@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { CartIcon } from "../../assets/icons"
 import Drawer from "./Drawer"
+import { ItemTrolley } from "../trolleys"
 
 // import { SwicherTheme } from "./"
 
@@ -37,7 +38,7 @@ export default function Nav() {
 				</button>
 			</div>
 			<Drawer isOpen={openDrawer} setIsOpen={setOpenDrawer}>
-				<span>Content</span>
+				<ItemTrolley />
 			</Drawer>
 		</nav>
 	)

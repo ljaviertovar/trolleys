@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { CartIcon } from "../../assets/icons"
+import Drawer from "./Drawer"
 
 // import { SwicherTheme } from "./"
 
 export default function Nav() {
 	const [openDrawer, setOpenDrawer] = useState(false)
-
+	console.log({ openDrawer })
 	return (
 		<nav className='flex h-9 items-center justify-between'>
 			<div className='flex lg:min-w-0 lg:flex-1' aria-label='Global'>
@@ -31,8 +32,13 @@ export default function Nav() {
 					))}
 				</div> */}
 			<div className='hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end'>
-				<CartIcon openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+				<button onClick={() => setOpenDrawer(!openDrawer)}>
+					<CartIcon />
+				</button>
 			</div>
+			<Drawer isOpen={openDrawer} setIsOpen={setOpenDrawer}>
+				<span>Content</span>
+			</Drawer>
 		</nav>
 	)
 }

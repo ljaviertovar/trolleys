@@ -1,14 +1,16 @@
 import { SwicherTheme } from "./"
 
-interface Props {
-	toggleDarkMode: (value: boolean) => void
-}
-
 export default function Nav() {
 	return (
-		<nav className='grid grid-cols-2 place-content-between items-center w-full'>
-			<h4 className='text-black dark:text-white text-2xl'>Trolleys</h4>
-			<SwicherTheme />
+		<nav className='w-full py-1'>
+			<ul className='flex justify-between'>
+				<li>
+					<SwicherTheme />
+				</li>
+				<li>
+					<button type='button'>Cart</button>
+				</li>
+			</ul>
 		</nav>
 	)
 }

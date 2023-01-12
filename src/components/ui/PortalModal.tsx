@@ -33,6 +33,7 @@ const PortalModal = ({ children, wrapperId }: Props) => {
 	const createWrapperAndAppendToBody = (elementId: string) => {
 		const element = document.createElement("div")
 		element.setAttribute("id", elementId)
+		element.classList.add("backdrop-modal", "animated-modal", "animated-modal-faster", "fadeIn")
 		document.body.appendChild(element)
 		return element
 	}

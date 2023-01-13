@@ -4,10 +4,22 @@ import { useTrolleyStore } from "./store/trolley-store"
 import { Nav, PortalModal } from "./components/ui"
 import { NewTrolley } from "./components/trolleys"
 
+import { shallow } from "zustand/shallow"
+
+// const INITIAL_TROLLEY = {
+// 	id: "",
+// 	name: ""
+// }
+
 export default function App() {
 	const [showNewList, setShowNewList] = useState(false)
 
-	const { trolleys } = useTrolleyStore(state => state)
+	const { trolleys } = useTrolleyStore(
+		state => ({
+			trolleys: state.trolleys,
+		}),
+		shallow
+	)
 
 	return (
 		<div className='isolate px-6 py-6 lg:px-8'>

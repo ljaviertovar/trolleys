@@ -13,11 +13,13 @@ interface Trolley {
 }
 
 interface TrolleyState {
-	currentTrolley: null | string
+	currentTrolley: null | Trolley
 	trolleys: Trolley[]
+	setCurrentTrolley: (value: Trolley) => void
 }
 
-export const useTrolleyStore = create<TrolleyState>(() => ({
+export const useTrolleyStore = create<TrolleyState>(set => ({
 	currentTrolley: null,
+	setCurrentTrolley: (value: Trolley) => set(state => ({ currentTrolley: value })),
 	trolleys: TROLLEYS,
 }))

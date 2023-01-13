@@ -1,11 +1,13 @@
-import { useLayoutEffect, useState } from "react"
-import { createPortal } from "react-dom"
+import { useState } from "react"
+import { useTrolleyStore } from "./store/trolley-store"
 
 import { Nav, PortalModal } from "./components/ui"
 import { NewTrolley } from "./components/trolleys"
 
 export default function App() {
 	const [showNewList, setShowNewList] = useState(false)
+
+	const { trolleys } = useTrolleyStore(state => state)
 
 	return (
 		<div className='isolate px-6 py-6 lg:px-8'>
@@ -24,7 +26,11 @@ export default function App() {
 								<NewTrolley setShowNewList={setShowNewList} />
 							</PortalModal>
 						)}
-						<div className='py-10 px-10 text-center border-2'>My Trolleys</div>
+						<div className='py-10 px-10 text-center border-2'>
+							{trolleys.map(trolley => (
+								<div className='p-4 text-center border-2 w-40'>{trolley.name}</div>
+							))}
+						</div>
 					</div>
 				</div>
 			</main>

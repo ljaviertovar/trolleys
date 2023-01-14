@@ -1,13 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CartIcon } from "../../assets/icons"
 import Drawer from "./Drawer"
 import { ItemTrolley } from "../trolleys"
 
 // import { SwicherTheme } from "./"
+import { useTrolleyStore } from "../../store/trolley-store"
 
 export default function Nav() {
 	const [openDrawer, setOpenDrawer] = useState(false)
-	console.log({ openDrawer })
+
+	const currentTrolley = useTrolleyStore(state => state.currentTrolley)
+
+	useEffect(() => {
+		if (currentTrolley) setOpenDrawer(true)
+	}, [currentTrolley])
+
 	return (
 		<nav className='flex h-9 items-center justify-between'>
 			<div className='flex lg:min-w-0 lg:flex-1' aria-label='Global'>

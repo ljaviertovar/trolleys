@@ -6,11 +6,6 @@ import { NewTrolley } from "./components/trolleys"
 
 import { shallow } from "zustand/shallow"
 
-// const INITIAL_TROLLEY = {
-// 	id: "",
-// 	name: ""
-// }
-
 export default function App() {
 	const [showNewList, setShowNewList] = useState(false)
 

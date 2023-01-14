@@ -1,9 +1,6 @@
 import create from "zustand"
 
-interface Trolley {
-	id: string
-	name: string
-}
+import { Trolley } from "../interfaces/trolley-interfaces"
 
 interface TrolleyState {
 	currentTrolley: null | Trolley

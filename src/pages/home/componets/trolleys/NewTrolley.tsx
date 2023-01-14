@@ -1,18 +1,16 @@
-import { FormEvent, useState } from "react"
-import { useTrolleyStore } from "../../../../store/trolley-store"
+import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 
-interface Trolley {
-	id: string
-	name: string
-}
-interface Props {
-	setShowNewList: (value: boolean) => void
-}
+import { useTrolleyStore } from "../../../../store/trolley-store"
+
+import { Trolley } from "../../../../interfaces/trolley-interfaces"
 
 const INITIAL_TROLLEY = {
 	id: "",
 	name: "",
+}
+interface Props {
+	setShowNewList: (value: boolean) => void
 }
 
 export default function NewTrolley({ setShowNewList }: Props) {
@@ -20,7 +18,7 @@ export default function NewTrolley({ setShowNewList }: Props) {
 
 	const { setCurrentTrolley, addTrolley } = useTrolleyStore()
 
-	const handleChange = (ev: FormEvent<HTMLInputElement>) => {
+	const handleChange = (ev: React.FormEvent<HTMLInputElement>) => {
 		setNewTrolley({ ...newTrolley, name: ev.currentTarget.value })
 	}
 

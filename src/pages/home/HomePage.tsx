@@ -24,7 +24,7 @@ export default function HomePage() {
 					<h1 className='text-4xl font-bold tracking-tight sm:text-center sm:text-6xl'>Trolleys</h1>
 					<div className='mt-8 flex flex-col justify-center p-4 border-2 gap-4'>
 						<div className='w-fit m-auto border-2'>
-							<button className='px-2 bg-slate-200' onClick={() => setShowNewList(!showNewList)}>
+							<button type='button' className='px-2 bg-slate-200' onClick={() => setShowNewList(!showNewList)}>
 								New Trolley
 							</button>
 						</div>

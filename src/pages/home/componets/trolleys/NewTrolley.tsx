@@ -32,24 +32,17 @@ export default function NewTrolley({ setShowNewList }: Props) {
 	console.log(useTrolleyStore())
 
 	return (
-		<div className='shadow-lg bg-white w-4/12 md:max-w-11/12 mx-auto  overflow-y-auto p-4'>
-			<div className='w-full mb-5'>
-				<input
-					type='text'
-					placeholder="Trolleys's name"
-					className='w-full'
-					value={newTrolley.name}
-					onChange={handleChange}
-				/>
-			</div>
-			<div className='flex justify-end w-full gap-4'>
-				<button className='px-2 bg-slate-200' onClick={() => setShowNewList(false)}>
-					Cancel
-				</button>
-				<button className='px-2 bg-slate-200' onClick={() => createNewtrolley()}>
-					Create
-				</button>
-			</div>
+		<div className='flex w-full mb-5 shadow-lg'>
+			<input
+				type='text'
+				placeholder="Trolleys's name"
+				className='w-8/12 p-4'
+				value={newTrolley.name}
+				onChange={handleChange}
+			/>
+			<button className='px-4 w-4/12 bg-slate-200' onClick={() => createNewtrolley()}>
+				New trolley
+			</button>
 		</div>
 	)
 }

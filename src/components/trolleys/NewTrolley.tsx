@@ -18,14 +18,17 @@ const INITIAL_TROLLEY = {
 export default function NewTrolley({ setShowNewList }: Props) {
 	const [newTrolley, setNewTrolley] = useState<Trolley>(INITIAL_TROLLEY)
 
-	const { setCurrentTrolley } = useTrolleyStore()
+	const { setCurrentTrolley, addTrolley } = useTrolleyStore()
 
 	const handleChange = (ev: FormEvent<HTMLInputElement>) => {
 		setNewTrolley({ ...newTrolley, name: ev.currentTarget.value })
 	}
 
 	const createNewtrolley = () => {
+		if (!newTrolley.name) return null
 		setCurrentTrolley({ ...newTrolley, id: uuidv4() })
+		addTrolley(newTrolley)
+		setShowNewList(false)
 	}
 
 	console.log(useTrolleyStore())

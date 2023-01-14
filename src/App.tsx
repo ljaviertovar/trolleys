@@ -40,7 +40,9 @@ export default function App() {
 						)}
 						<div className='py-10 px-10 text-center border-2'>
 							{trolleys.map(trolley => (
-								<div className='p-4 text-center border-2 w-40'>{trolley.name}</div>
+								<div key={trolley.id} className='p-4 text-center border-2 w-40'>
+									{trolley.name}
+								</div>
 							))}
 						</div>
 					</div>

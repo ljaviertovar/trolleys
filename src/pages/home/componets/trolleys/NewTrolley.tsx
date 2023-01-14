@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react"
-import { useTrolleyStore } from "../../store/trolley-store"
+import { useTrolleyStore } from "../../../../store/trolley-store"
 import { v4 as uuidv4 } from "uuid"
 
 interface Trolley {

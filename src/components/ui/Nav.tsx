@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { CartIcon } from "../../assets/icons"
 import Drawer from "./Drawer"
-import { ItemTrolley } from "../trolleys"
+import { ItemTrolley } from "../../pages/home/componets/trolleys"
 
 // import { SwicherTheme } from "./"
 import { useTrolleyStore } from "../../store/trolley-store"

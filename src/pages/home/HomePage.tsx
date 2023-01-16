@@ -47,9 +47,13 @@ export default function HomePage() {
 					</div>
 				</div>
 			</main>
-			{currentTrolley && (
+			{currentTrolley ? (
 				<Drawer title={currentTrolley.name} isOpen={openDrawer} setIsOpen={setOpenDrawer}>
 					<ContentCurrentTrolley />
+				</Drawer>
+			) : (
+				<Drawer isOpen={openDrawer} setIsOpen={setOpenDrawer}>
+					<span>add a Trolley</span>
 				</Drawer>
 			)}
 		</div>

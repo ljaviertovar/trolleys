@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { CartIcon } from "../../assets/icons"
 import Drawer from "./Drawer"
-import { ItemTrolley } from "../../pages/home/componets/trolleys"
+import { Trolley } from "../../pages/home/componets/trolleys"
 
 // import { SwicherTheme } from "./"
 import { useTrolleyStore } from "../../store/trolley-store"
@@ -24,28 +24,28 @@ export default function Nav() {
 				</a>
 			</div>
 			<div className='flex lg:hidden'>
-				{/* <button
+				<button
 					type='button'
 					className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
-					onClick={() => setMobileMenuOpen(true)}
+					// onClick={() => setMobileMenuOpen(true)}
 				>
 					<span className='sr-only'>Open main menu</span>
-				</button> */}
+				</button>
 			</div>
-			{/* <div className='hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12'>
-					{navigation.map(item => (
-						<a key={item.name} href={item.href} className='font-semibold text-gray-900 hover:text-gray-900'>
-							{item.name}
-						</a>
-					))}
-				</div> */}
+			<div className='hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-center lg:gap-x-12'>
+				{/* {navigation.map(item => (
+					<a key={item.name} href={item.href} className='font-semibold text-gray-900 hover:text-gray-900'>
+						{item.name}
+					</a>
+				))} */}
+			</div>
 			<div className='hidden lg:flex lg:min-w-0 lg:flex-1 lg:justify-end'>
 				<button onClick={() => setOpenDrawer(!openDrawer)}>
 					<CartIcon />
 				</button>
 			</div>
 			<Drawer isOpen={openDrawer} setIsOpen={setOpenDrawer}>
-				<ItemTrolley />
+				<Trolley />
 			</Drawer>
 		</nav>
 	)

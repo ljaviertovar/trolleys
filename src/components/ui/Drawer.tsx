@@ -1,4 +1,13 @@
-export default function Drawer({ children, isOpen, setIsOpen }) {
+import { CloseIcon } from "../../assets/icons"
+
+interface Props {
+	title: string
+	children: React.ReactElement | React.ReactElement[]
+	isOpen: boolean
+	setIsOpen: (value: boolean) => void
+}
+
+export default function Drawer({ title, children, isOpen, setIsOpen }: Props) {
 	return (
 		<main
 			className={
@@ -10,21 +19,24 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
 		>
 			<section
 				className={
-					" w-screen max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
+					"w-screen max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  " +
 					(isOpen ? " translate-x-0 " : " translate-x-full ")
 				}
 			>
-				<article className='relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full'>
-					<header className='p-4 font-bold text-lg'>Header</header>
-					{children}
-				</article>
+				<header className='drawer-header p-4 flex justify-between flex-1 gap-4 border-b-2 shadow-lg'>
+					<h3 className='text-xl'>{title}</h3>
+					<button className='w-10 bg-slate-200 flex justify-center items-center' onClick={() => setIsOpen(false)}>
+						<CloseIcon />
+					</button>
+				</header>
+				<div className='px-4 py-5'>{children}</div>
 			</section>
-			<section
+			<div
 				className=' w-screen h-full cursor-pointer '
 				onClick={() => {
 					setIsOpen(false)
 				}}
-			></section>
+			></div>
 		</main>
 	)
 }

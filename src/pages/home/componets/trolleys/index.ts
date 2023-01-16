@@ -1,4 +1,4 @@
 import NewTrolley from "./NewTrolley"
-import ItemTrolley from "./ItemTrolley"
+import Trolley from "./Trolley"
 
-export { NewTrolley, ItemTrolley }
+export { NewTrolley, Trolley }

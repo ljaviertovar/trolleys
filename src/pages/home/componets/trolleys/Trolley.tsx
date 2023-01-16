@@ -1,4 +1,4 @@
-export default function ItemTrolley() {
+export default function Trolley() {
 	return (
 		<div className='border border-gray-300 shadow rounded-md p-4 max-w-sm w-full mx-auto'>
 			<div className='animate-pulse flex space-x-4'>

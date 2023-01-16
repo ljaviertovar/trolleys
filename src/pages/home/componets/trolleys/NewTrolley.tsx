@@ -9,11 +9,9 @@ const INITIAL_TROLLEY = {
 	id: "",
 	name: "",
 }
-interface Props {
-	setShowNewList: (value: boolean) => void
-}
+interface Props {}
 
-export default function NewTrolley({ setShowNewList }: Props) {
+export default function NewTrolley({}: Props) {
 	const [newTrolley, setNewTrolley] = useState<Trolley>(INITIAL_TROLLEY)
 
 	const { setCurrentTrolley, addTrolley } = useTrolleyStore()
@@ -26,7 +24,6 @@ export default function NewTrolley({ setShowNewList }: Props) {
 		if (!newTrolley.name) return null
 		setCurrentTrolley({ ...newTrolley, id: uuidv4() })
 		addTrolley(newTrolley)
-		setShowNewList(false)
 	}
 
 	console.log(useTrolleyStore())

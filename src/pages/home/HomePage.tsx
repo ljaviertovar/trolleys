@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { shallow } from "zustand/shallow"
 
-import { NewTrolley, Trolley } from "./componets/trolleys"
+import { NewTrolley } from "./componets/trolleys"
 
 import { useTrolleyStore } from "../../store/trolley-store"
 import Drawer from "../../components/ui/Drawer"
 import { CartIcon } from "../../assets/icons"
+import ContentCurrentTrolley from "./componets/trolleys/ContentCurrentTrolley"
 
 export default function HomePage() {
-	const [showNewList, setShowNewList] = useState(false)
 	const [openDrawer, setOpenDrawer] = useState(false)
 
 	const { trolleys, currentTrolley } = useTrolleyStore(
@@ -30,12 +30,12 @@ export default function HomePage() {
 					<div className='flex justify-between'>
 						<h1 className='text-4xl font-bold tracking-tight sm:text-center sm:text-6xl'>Trolleys</h1>
 
-						<button onClick={() => setOpenDrawer(!openDrawer)}>
+						<button title='Trolley' type='button' onClick={() => setOpenDrawer(!openDrawer)}>
 							<CartIcon />
 						</button>
 					</div>
 					<div className='mt-8 flex flex-col justify-center p-4 border-2 gap-4'>
-						<NewTrolley setShowNewList={setShowNewList} />
+						<NewTrolley />
 
 						<div className='py-10 px-10 text-center border-2'>
 							{trolleys.map(trolley => (
@@ -47,9 +47,11 @@ export default function HomePage() {
 					</div>
 				</div>
 			</main>
-			<Drawer title={currentTrolley?.name} isOpen={openDrawer} setIsOpen={setOpenDrawer}>
-				<Trolley />
-			</Drawer>
+			{currentTrolley && (
+				<Drawer title={currentTrolley.name} isOpen={openDrawer} setIsOpen={setOpenDrawer}>
+					<ContentCurrentTrolley />
+				</Drawer>
+			)}
 		</div>
 	)
 }

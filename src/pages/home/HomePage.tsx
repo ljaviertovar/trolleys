@@ -23,6 +23,8 @@ export default function HomePage() {
 		if (currentTrolley) setOpenDrawer(true)
 	}, [currentTrolley])
 
+	console.log(useTrolleyStore())
+
 	return (
 		<div className='isolate px-6 py-6 lg:px-8'>
 			<main>

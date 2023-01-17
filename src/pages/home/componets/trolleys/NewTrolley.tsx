@@ -3,11 +3,12 @@ import { v4 as uuidv4 } from "uuid"
 
 import { useTrolleyStore } from "../../../../store/trolley-store"
 
-import { Trolley } from "../../../../interfaces/trolley-interfaces"
+import { Trolley, ItemTrolley } from "../../../../interfaces/trolley-interfaces"
 
 const INITIAL_TROLLEY = {
 	id: "",
 	name: "",
+	items: [],
 }
 interface Props {}
 
@@ -22,11 +23,10 @@ export default function NewTrolley({}: Props) {
 
 	const createNewtrolley = () => {
 		if (!newTrolley.name) return null
-		setCurrentTrolley({ ...newTrolley, id: uuidv4() })
-		addTrolley(newTrolley)
+		const id = uuidv4()
+		setCurrentTrolley({ ...newTrolley, id })
+		addTrolley({ ...newTrolley, id })
 	}
-
-	console.log(useTrolleyStore())
 
 	return (
 		<div className='flex w-full mb-5 shadow-lg'>

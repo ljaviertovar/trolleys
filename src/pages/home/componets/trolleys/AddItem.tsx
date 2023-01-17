@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { AddIcon } from "../../../../assets/icons"
 import Drawer from "../../../../components/ui/Drawer"
-import ContentAddItem from "../ContentAddItem"
+import ContentAddItem from "./ContentAddItem"
 
 export default function AddItem() {
 	const [openDrawer, setOpenDrawer] = useState(false)

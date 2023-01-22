@@ -37,7 +37,7 @@ export default function NewTrolley({}: Props) {
 				value={newTrolley.name}
 				onChange={handleChange}
 			/>
-			<button className='px-4 w-4/12 bg-slate-200' onClick={() => createNewtrolley()}>
+			<button type='button' className='px-4 w-4/12 bg-slate-200' onClick={() => createNewtrolley()}>
 				New trolley
 			</button>
 		</div>

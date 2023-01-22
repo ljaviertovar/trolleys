@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { v4 as uuidv4 } from "uuid"
 
-import { useTrolleyStore } from "../../../../store/trolley-store"
+import { useTrolleyStore } from "../../store/trolley-store"
 
-import { Trolley, ItemTrolley } from "../../../../interfaces/trolley-interfaces"
+import { Trolley, ItemTrolley } from "../../interfaces/trolley-interfaces"
 
 const INITIAL_TROLLEY = {
 	id: "",

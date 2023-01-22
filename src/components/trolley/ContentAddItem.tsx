@@ -1,5 +1,5 @@
-import { AddIcon } from "../../../../assets/icons"
-import { useTrolleyStore } from "../../../../store/trolley-store"
+import { AddIcon } from "../../assets/icons"
+import { useTrolleyStore } from "../../store/trolley-store"
 
 const DEFAULT_ITEMS = [
 	{

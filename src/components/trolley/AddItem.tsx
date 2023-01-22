@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { AddIcon } from "../../../../assets/icons"
-import Drawer from "../../../../components/ui/Drawer"
+import { AddIcon } from "../../assets/icons"
+import Drawer from "../ui/Drawer"
 import ContentAddItem from "./ContentAddItem"
 
 export default function AddItem() {

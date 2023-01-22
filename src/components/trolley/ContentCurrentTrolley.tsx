@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Drawer from "../../../../components/ui/Drawer"
+import Drawer from "../ui/Drawer"
 import { AddItem } from "."
 
 export default function ContentCurrentTrolley() {

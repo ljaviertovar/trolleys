@@ -6,6 +6,7 @@ import { useTrolleyStore } from "@/store/trolley-store"
 import { CartIcon } from "@/assets/icons"
 import { ContentCurrentTrolley, NewTrolley } from "@/components/trolley"
 import { Drawer } from "@/components/ui"
+import axios from "axios"
 // import { Inter } from "@next/font/google"
 // import styles from '@/styles/Home.module.css'
 
@@ -21,6 +22,12 @@ export default function HomePage() {
 		}),
 		shallow
 	)
+
+	const { getTrolleys } = useTrolleyStore()
+
+	useEffect(() => {
+		getTrolleys()
+	}, [getTrolleys])
 
 	useEffect(() => {
 		if (currentTrolley) setOpenDrawer(true)

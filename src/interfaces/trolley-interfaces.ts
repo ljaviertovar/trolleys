@@ -1,5 +1,5 @@
 export interface ItemTrolley {
-	id: string
+	id?: string
 	name: string
 	added: boolean
 	quantity: number

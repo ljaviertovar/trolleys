@@ -8,8 +8,7 @@ interface TrolleyState {
 	trolleys: Trolley[]
 	getTrolleys: () => void
 	setCurrentTrolley: (value: Trolley) => void
-	// addTrolley: (value: Trolley) => void
-	addItem: (item: ItemTrolley) => void
+	addItem: (value: ItemTrolley) => void
 }
 
 export const useTrolleyStore = create<TrolleyState>((set, get) => ({
@@ -22,11 +21,16 @@ export const useTrolleyStore = create<TrolleyState>((set, get) => ({
 		}
 	},
 	setCurrentTrolley: (value: Trolley) => set(state => ({ currentTrolley: value })),
-	// addTrolley: (value: Trolley) => set(state => ({ trolleys: [...state.trolleys, value] })),
+	// updateTrolleyItems: (items: ItemTrolley) => {
+	// 	const currentTrolley = get().currentTrolley
+
+	// },
 	addItem: (item: ItemTrolley) => {
 		const currentTrolley = get().currentTrolley
 		if (currentTrolley) {
-			const updatedTrolley = { ...currentTrolley, items: [...currentTrolley.items, item] }
+			set(state => ({
+				currentTrolley: { ...currentTrolley, items: [...currentTrolley.items, item] },
+			}))
 		}
 	},
 }))

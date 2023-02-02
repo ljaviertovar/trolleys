@@ -5,6 +5,7 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-co
 
 import typeDefs from "../../graphql/type-defs"
 import resolvers from "../../graphql/resolvers"
+import { connectDB } from "../../database"
 
 const apolloServer = new ApolloServer({
 	typeDefs,
@@ -21,6 +22,7 @@ export const config = {
 const startServer = apolloServer.start()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+	await connectDB()
 	await startServer
 	await apolloServer.createHandler({
 		path: "/api/graphql",

@@ -1,1 +1,36 @@
-$ docker run --name trolleys -d 27017:27017 -d mongo
+# Trolleys
+
+Para correr localmente, se necesita la base de datos.
+
+```
+docker-compose up -d
+```
+
+- El -d, significa **detached**
+
+## Configurar las variables de entorno
+
+Renombrar el archivo **.env.template** a **.env**
+
+- MongoDB URL Local:
+
+```
+MONGO_URL=mongodb://localhost:27017/teslodb
+```
+
+- Reconstruir los módulos de node y levantar Next
+
+```
+pnpm install
+pnpm run dev
+```
+
+optional: docker run --name trolleys -d 27017:27017 -d mongo
+
+## Llenar la base de datos con información de pruebas
+
+Llamara:
+
+```
+http://localhost:3000/api/seed
+```

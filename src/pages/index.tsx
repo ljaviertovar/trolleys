@@ -9,6 +9,7 @@ import { Drawer } from "@/components/ui"
 import axios from "axios"
 // import { Inter } from "@next/font/google"
 // import styles from '@/styles/Home.module.css'
+import { ItemTrolley, Trolley } from "../interfaces/trolley-interfaces"
 
 // const inter = Inter({ subsets: ["latin"] })
 
@@ -23,7 +24,7 @@ export default function HomePage() {
 		shallow
 	)
 
-	const { getTrolleys } = useTrolleyStore()
+	const { getTrolleys, setCurrentTrolley } = useTrolleyStore()
 
 	useEffect(() => {
 		getTrolleys()
@@ -32,6 +33,10 @@ export default function HomePage() {
 	useEffect(() => {
 		if (currentTrolley) setOpenDrawer(true)
 	}, [currentTrolley])
+
+	const openTrolley = (trolley: Trolley) => {
+		setCurrentTrolley(trolley)
+	}
 
 	console.log(useTrolleyStore())
 
@@ -51,7 +56,11 @@ export default function HomePage() {
 
 						<div className='py-10 px-10 text-center border-2'>
 							{trolleys.map(trolley => (
-								<div key={trolley.id} className='p-4 text-center border-2 w-40'>
+								<div
+									key={trolley.id}
+									className='p-4 text-center border-2 w-40 cursor-pointer'
+									onClick={() => openTrolley(trolley)}
+								>
 									{trolley.name}
 								</div>
 							))}

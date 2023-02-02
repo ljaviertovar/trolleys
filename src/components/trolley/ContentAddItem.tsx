@@ -33,13 +33,13 @@ export default function ContentAddItem() {
 	const currentTrolley = useTrolleyStore(state => state.currentTrolley)
 	const [newItem, setNewItem] = useState<ItemTrolley>(INITIAL_ITEM)
 
-	const addItem = useTrolleyStore(state => state.addItem)
+	const { addItem, getTrolleys } = useTrolleyStore(state => state)
 
 	const handleChange = (value: string) => {
 		setNewItem({ ...newItem, name: value })
 	}
 
-	const handleClick = () => {
+	const onAddItem = () => {
 		if (!newItem.name) return null
 		const id = uuidv4()
 
@@ -53,6 +53,8 @@ export default function ContentAddItem() {
 				console.log(resp)
 
 				addItem(item)
+				getTrolleys()
+				setNewItem(INITIAL_ITEM)
 
 				//TODO: add new item to suggestions
 			})
@@ -79,7 +81,7 @@ export default function ContentAddItem() {
 					value={newItem.name}
 					onChange={e => handleChange(e.target.value)}
 				/>
-				<button type='button' className='px-4 w-4/12 bg-slate-200' onClick={() => handleClick()}>
+				<button type='button' className='px-4 w-4/12 bg-slate-200' onClick={() => onAddItem()}>
 					Add
 				</button>
 			</div>

@@ -47,11 +47,30 @@ const resolvers = {
 
 			return savedTrolley
 		},
+		updateTrolley: async (_, args) => {
+			await connectDB()
+			const updatedTrolley = await Trolley.findByIdAndUpdate(args._id, args, { new: true })
+			await disconnectDB()
+
+			if (!updatedTrolley) throw new Error('Trolley not found')
+
+			return updatedTrolley
+		},
+		deleteTrolley: async (_, { _id }) => {
+			await connectDB()
+			const deletedTrolley = await Trolley.findByIdAndDelete(_id)
+
+			if (!deletedTrolley) throw new Error('Trolley not found')
+
+			await ItemTrolley.deleteMany({ trolleyId: deletedTrolley._id })
+
+			await disconnectDB()
+
+			return deletedTrolley
+		},
 		createItemTrolley: async (_, { name, trolleyId }) => {
 			await connectDB()
-
 			const trolleyFound = await Trolley.findById(trolleyId)
-			console.log({ trolleyFound })
 			if (!trolleyFound) throw new Error('Trolley not found')
 
 			const item = new ItemTrolley({
@@ -62,6 +81,24 @@ const resolvers = {
 			await disconnectDB()
 
 			return savedItem
+		},
+		updateItemTrolley: async (_, args) => {
+			await connectDB()
+			const updatedItemTrolley = await ItemTrolley.findByIdAndUpdate(args._id, args, { new: true })
+			await disconnectDB()
+
+			if (!updatedItemTrolley) throw new Error('Item Trolley not found')
+
+			return updatedItemTrolley
+		},
+		deleteItemTrolley: async (_, { _id }) => {
+			await connectDB()
+			const deletedItemTrolley = await ItemTrolley.findByIdAndDelete(_id)
+			await disconnectDB()
+
+			if (!deletedItemTrolley) throw new Error('Item Trolley not found')
+
+			return deletedItemTrolley
 		}
 	},
 }

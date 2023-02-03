@@ -10,7 +10,11 @@ const typeDefs = gql`
 
 	type Mutation {
 		createTrolley(name: String!, description: String): Trolley
+		deleteTrolley(_id: ID!): Trolley
+		updateTrolley(_id: ID!, name: String, description:String): Trolley
 		createItemTrolley(name: String!, trolleyId: ID!): ItemTrolley
+		updateItemTrolley(_id: ID!, name: String, checked:Boolean): ItemTrolley
+		deleteItemTrolley(_id: ID!): ItemTrolley
 	}
 
 	type Trolley {

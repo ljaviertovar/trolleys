@@ -8,7 +8,7 @@ const typeDefs = gql`
 
 	type Mutation {
 		createTrolley(name: String, description: String): Trolley
-		createItemTrolly(name: String, trolleyId: ID): ItemTrolley
+		createItemTrolley(name: String, trolleyId: ID): ItemTrolley
 	}
 
 	type Trolley {

@@ -3,9 +3,9 @@ import { NextApiRequest, NextApiResponse } from "next"
 import { ApolloServer } from "apollo-server-micro"
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core"
 
-import typeDefs from "../../graphql/type-defs"
-import resolvers from "../../graphql/resolvers"
-import { connectDB } from "../../database"
+import typeDefs from "@/graphql/type-defs"
+import resolvers from "@/graphql/resolvers"
+// import { connectDB } from "@/database"
 
 const apolloServer = new ApolloServer({
 	typeDefs,
@@ -22,7 +22,7 @@ export const config = {
 const startServer = apolloServer.start()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	await connectDB()
+	// await connectDB()
 	await startServer
 	await apolloServer.createHandler({
 		path: "/api/graphql",

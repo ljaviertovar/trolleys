@@ -1,5 +1,12 @@
 import mongoose from "mongoose"
 
+/**
+ * 0 = disconnected
+ * 1 = connected
+ * 2 = connecting
+ * 3 = disconnecting
+ */
+
 const localUri = process.env.MONGODB_LOCAL_URI as string
 
 const connection: any = {}

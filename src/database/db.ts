@@ -26,6 +26,7 @@ export async function connectDB() {
 		await mongoose.disconnect()
 	}
 
+	mongoose.set("strictQuery", false)
 	const db = await mongoose.connect(localUri)
 	console.log("? MongoDB Database Connected Successfully")
 	connection.isConnected = db.connections[0].readyState

@@ -3,7 +3,12 @@ import Trolley from "models/Trolley"
 
 const resolvers = {
 	Query: {
-		hello: () => "Hello world",
+		trolleys: async () => {
+			await connectDB()
+			const trolleys = Trolley.find()
+			await disconnectDB()
+			return trolleys
+		},
 	},
 	Mutation: {
 		createTrolley: async (_, { name, description }) => {

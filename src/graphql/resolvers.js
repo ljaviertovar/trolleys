@@ -1,33 +1,33 @@
 import { connectDB, disconnectDB } from "@/database"
-import { Trolley, ItemTrolley } from "models"
+import { ItemTrolleyModel, TrolleyModel } from "models"
 
 const resolvers = {
 	Query: {
 		trolleys: async () => {
 			await connectDB()
-			const trolleys = Trolley.find().lean()
+			const trolleys = TrolleyModel.find().lean()
 			await disconnectDB()
 			return trolleys
 		},
-		itemsTrolley: async () => {
-			await connectDB()
-			const items = ItemTrolley.find().lean()
-			await disconnectDB()
-
-			return items
-		},
 		trolley: async (_, { _id }) => {
 			await connectDB()
-			const trolleyFound = await Trolley.findById(_id)
+			const trolleyFound = await TrolleyModel.findById(_id)
 			await disconnectDB()
 
 			if (!trolleyFound) throw new Error('Trolley not found')
 
 			return trolleyFound
 		},
+		itemsTrolley: async () => {
+			await connectDB()
+			const items = ItemTrolleyModel.find().lean()
+			await disconnectDB()
+
+			return items
+		},
 		itemTrolley: async (_, { _id }) => {
 			await connectDB()
-			const itemTrolleyFound = await ItemTrolley.findById(_id)
+			const itemTrolleyFound = await ItemTrolleyModel.findById(_id)
 			await disconnectDB()
 
 			if (!itemTrolleyFound) throw new Error('Item Trolley not found')
@@ -38,7 +38,7 @@ const resolvers = {
 	Mutation: {
 		createTrolley: async (_, { name, description }) => {
 			await connectDB()
-			const trolley = new Trolley({
+			const trolley = new TrolleyModel({
 				name,
 				description,
 			})
@@ -49,7 +49,7 @@ const resolvers = {
 		},
 		updateTrolley: async (_, args) => {
 			await connectDB()
-			const updatedTrolley = await Trolley.findByIdAndUpdate(args._id, args, { new: true })
+			const updatedTrolley = await TrolleyModel.findByIdAndUpdate(args._id, args, { new: true })
 			await disconnectDB()
 
 			if (!updatedTrolley) throw new Error('Trolley not found')
@@ -58,11 +58,11 @@ const resolvers = {
 		},
 		deleteTrolley: async (_, { _id }) => {
 			await connectDB()
-			const deletedTrolley = await Trolley.findByIdAndDelete(_id)
+			const deletedTrolley = await TrolleyModel.findByIdAndDelete(_id)
 
 			if (!deletedTrolley) throw new Error('Trolley not found')
 
-			await ItemTrolley.deleteMany({ trolleyId: deletedTrolley._id })
+			await ItemTrolleyModel.deleteMany({ trolleyId: deletedTrolley._id })
 
 			await disconnectDB()
 
@@ -70,10 +70,10 @@ const resolvers = {
 		},
 		createItemTrolley: async (_, { name, trolleyId }) => {
 			await connectDB()
-			const trolleyFound = await Trolley.findById(trolleyId)
+			const trolleyFound = await TrolleyModel.findById(trolleyId)
 			if (!trolleyFound) throw new Error('Trolley not found')
 
-			const item = new ItemTrolley({
+			const item = new ItemTrolleyModel({
 				name,
 				trolleyId
 			})
@@ -84,7 +84,7 @@ const resolvers = {
 		},
 		updateItemTrolley: async (_, args) => {
 			await connectDB()
-			const updatedItemTrolley = await ItemTrolley.findByIdAndUpdate(args._id, args, { new: true })
+			const updatedItemTrolley = await ItemTrolleyModel.findByIdAndUpdate(args._id, args, { new: true })
 			await disconnectDB()
 
 			if (!updatedItemTrolley) throw new Error('Item Trolley not found')
@@ -93,7 +93,7 @@ const resolvers = {
 		},
 		deleteItemTrolley: async (_, { _id }) => {
 			await connectDB()
-			const deletedItemTrolley = await ItemTrolley.findByIdAndDelete(_id)
+			const deletedItemTrolley = await ItemTrolleyModel.findByIdAndDelete(_id)
 			await disconnectDB()
 
 			if (!deletedItemTrolley) throw new Error('Item Trolley not found')
@@ -101,6 +101,24 @@ const resolvers = {
 			return deletedItemTrolley
 		}
 	},
+	Trolley: {
+		items: async (parent) => {
+			await connectDB()
+			const itemsTrolleyFound = await ItemTrolleyModel.find({ trolleyId: parent._id })
+			await disconnectDB()
+
+			return itemsTrolleyFound
+		}
+	},
+	ItemTrolley: {
+		trolley: async (parent) => {
+			await connectDB()
+			const trolleyFound = await TrolleyModel.findById(parent.trolleyId)
+			await disconnectDB()
+
+			return trolleyFound
+		}
+	}
 }
 
 export default resolvers

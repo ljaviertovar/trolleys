@@ -16,5 +16,5 @@ const trolleySchema = new mongoose.Schema(
 
 trolleySchema.index({ name: "text" })
 
-const Trolley: Model<Trolley> = mongoose.models.Trolley || model("Trolley", trolleySchema)
-export default Trolley
+const TrolleyModel: Model<Trolley> = mongoose.models.Trolley || model("Trolley", trolleySchema)
+export default TrolleyModel

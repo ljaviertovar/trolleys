@@ -1,2 +1,4 @@
-export { default as ItemTrolley } from "./ItemTrolley"
-export { default as Trolley } from "./Trolley"
+import ItemTrolleyModel from "./ItemTrolley"
+import TrolleyModel from "./Trolley"
+
+export { ItemTrolleyModel, TrolleyModel }

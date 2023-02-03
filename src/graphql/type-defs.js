@@ -3,8 +3,8 @@ import { gql } from "apollo-server-micro"
 const typeDefs = gql`
 	type Query {
 		trolleys: [Trolley]
-		itemsTrolley: [ItemTrolley]
 		trolley(_id: ID!): Trolley
+		itemsTrolley: [ItemTrolley]
 		itemTrolley(_id: ID!): ItemTrolley
 	}
 
@@ -21,6 +21,7 @@ const typeDefs = gql`
 		_id: ID
 		name: String
 		description: String
+		items: [ItemTrolley]
 		createdAt: String
 		updatedAt: String
 	}
@@ -29,7 +30,7 @@ const typeDefs = gql`
 		_id: ID
 		name: String
 		checked: Boolean
-		trolleyId: ID
+		trolley: Trolley
 		createdAt: String
 		updatedAt: String
 	}

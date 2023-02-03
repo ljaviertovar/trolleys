@@ -21,6 +21,6 @@ const itemTrolleySchema = new mongoose.Schema(
 	{ timestamps: true }
 )
 
-const ItemTrolley = (Model<ItemTrolley> = mongoose.models.ItemTrolley || model("ItemTrolley", itemTrolleySchema))
+const ItemTrolleyModel = (Model<ItemTrolley> = mongoose.models.ItemTrolley || model("ItemTrolley", itemTrolleySchema))
 
-export default ItemTrolley
+export default ItemTrolleyModel

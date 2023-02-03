@@ -1,5 +1,5 @@
 import { connectDB, disconnectDB } from "@/database"
-import Trolley from "models/Trolley"
+import { Trolley } from "models"
 
 const resolvers = {
 	Query: {

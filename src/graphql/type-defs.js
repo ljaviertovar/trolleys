@@ -4,11 +4,13 @@ const typeDefs = gql`
 	type Query {
 		trolleys: [Trolley]
 		itemsTrolley: [ItemTrolley]
+		trolley(_id: ID!): Trolley
+		itemTrolley(_id: ID!): ItemTrolley
 	}
 
 	type Mutation {
-		createTrolley(name: String, description: String): Trolley
-		createItemTrolley(name: String, trolleyId: ID): ItemTrolley
+		createTrolley(name: String!, description: String): Trolley
+		createItemTrolley(name: String!, trolleyId: ID!): ItemTrolley
 	}
 
 	type Trolley {

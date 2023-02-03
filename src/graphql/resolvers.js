@@ -15,6 +15,24 @@ const resolvers = {
 			await disconnectDB()
 
 			return items
+		},
+		trolley: async (_, { _id }) => {
+			await connectDB()
+			const trolleyFound = await Trolley.findById(_id)
+			await disconnectDB()
+
+			if (!trolleyFound) throw new Error('Trolley not found')
+
+			return trolleyFound
+		},
+		itemTrolley: async (_, { _id }) => {
+			await connectDB()
+			const itemTrolleyFound = await ItemTrolley.findById(_id)
+			await disconnectDB()
+
+			if (!itemTrolleyFound) throw new Error('Item Trolley not found')
+
+			return itemTrolleyFound
 		}
 	},
 	Mutation: {
